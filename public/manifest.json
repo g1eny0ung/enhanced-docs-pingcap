@@ -1,0 +1,32 @@
+{
+  "name": "Enhanced PingCAP Docs",
+  "version": "2.0.0",
+  "description": "Put wings on PingCAP Docs",
+  "manifest_version": 2,
+  "permissions": ["storage", "declarativeContent", "tabs", "activeTab"],
+  "background": {
+    "scripts": ["background.js"],
+    "persistent": false
+  },
+  "page_action": {
+    "default_icon": {
+      "16": "images/icon-16.png",
+      "32": "images/icon-32.png",
+      "48": "images/icon-48.png",
+      "128": "images/icon-128.png"
+    }
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://docs.pingcap.com/*"],
+      "css": ["app.css"],
+      "js": ["react_with_react_dom_prod.js", "main.dart.js"]
+    }
+  ],
+  "icons": {
+    "16": "images/icon-16.png",
+    "32": "images/icon-32.png",
+    "48": "images/icon-48.png",
+    "128": "images/icon-128.png"
+  }
+}

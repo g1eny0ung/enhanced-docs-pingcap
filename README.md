@@ -1,4 +1,3 @@
-An absolute bare-bones web app.
+# Enhanced docs.pingcap
 
-Created from templates made available by Stagehand under a BSD-style
-[license](https://github.com/dart-lang/stagehand/blob/master/LICENSE).
+> Browser extension that puts wings on PingCAP Docs.
