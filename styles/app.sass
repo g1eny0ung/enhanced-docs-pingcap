@@ -1,4 +1,30 @@
-.bookmark
+#enhanced-docs-pingcap-app
   position: fixed
-  top: 0
-  left: 0
+  bottom: 0
+  left: 50%
+  transform: translateX(-50%)
+  z-index: 999
+
+  .bookmark
+    color: #172d72
+    font-size: 20px
+    cursor: pointer
+
+  .marked
+    color: rgb(253, 126, 20)
+
+.edp-box
+  display: flex
+  justify-content: center
+  align-items: center
+  width: 40px
+  height: 40px
+  background: #fff
+  border: 1px solid #dbe4f0
+  border-bottom: none
+
+  &:first-child
+    border-top-left-radius: 3px
+
+  &:last-child
+    border-top-right-radius: 3px
