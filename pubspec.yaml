@@ -7,6 +7,8 @@ environment:
   sdk: '>=2.10.0 <3.0.0'
 
 dependencies:
+  js: '>=0.6.0 <0.7.0'
+  node_interop: ^1.2.1
   over_react: ^3.12.1
 
 dev_dependencies:

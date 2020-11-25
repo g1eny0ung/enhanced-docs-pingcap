@@ -1,17 +1,27 @@
 #enhanced-docs-pingcap-app
   position: fixed
   bottom: 0
-  left: 50%
-  transform: translateX(-50%)
+  left: 0
   z-index: 999
 
   .bookmark
     color: #172d72
     font-size: 20px
-    cursor: pointer
 
   .marked
     color: rgb(253, 126, 20)
+
+  .bookmark-list
+    position: absolute
+    top: -301px
+    left: 0
+    height: 300px
+    background: #fff
+    border: 1px solid #dbe4f0
+    border-radius: 3px
+
+.edp-container
+  display: flex
 
 .edp-box
   display: flex
@@ -22,9 +32,7 @@
   background: #fff
   border: 1px solid #dbe4f0
   border-bottom: none
-
-  &:first-child
-    border-top-left-radius: 3px
+  cursor: pointer
 
   &:last-child
     border-top-right-radius: 3px

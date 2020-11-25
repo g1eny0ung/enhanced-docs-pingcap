@@ -282,7 +282,7 @@ packages:
     source: hosted
     version: "0.3.4"
   js:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: js
       url: "https://pub.dartlang.org"
@@ -331,7 +331,7 @@ packages:
     source: hosted
     version: "0.9.7"
   node_interop:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: node_interop
       url: "https://pub.dartlang.org"

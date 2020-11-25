@@ -1,13 +1,13 @@
 @font-face {
   font-family: 'icomoon';
-  src: url('chrome-extension://__MSG_@@extension_id__/fonts/icomoon.eot?5j1mzm');
-  src: url('chrome-extension://__MSG_@@extension_id__/fonts/icomoon.eot?5j1mzm#iefix')
+  src: url('chrome-extension://__MSG_@@extension_id__/fonts/icomoon.eot?8awnvl');
+  src: url('chrome-extension://__MSG_@@extension_id__/fonts/icomoon.eot?8awnvl#iefix')
       format('embedded-opentype'),
-    url('chrome-extension://__MSG_@@extension_id__/fonts/icomoon.ttf?5j1mzm')
+    url('chrome-extension://__MSG_@@extension_id__/fonts/icomoon.ttf?8awnvl')
       format('truetype'),
-    url('chrome-extension://__MSG_@@extension_id__/fonts/icomoon.woff?5j1mzm')
+    url('chrome-extension://__MSG_@@extension_id__/fonts/icomoon.woff?8awnvl')
       format('woff'),
-    url('chrome-extension://__MSG_@@extension_id__/fonts/icomoon.svg?5j1mzm#icomoon')
+    url('chrome-extension://__MSG_@@extension_id__/fonts/icomoon.svg?8awnvl#icomoon')
       format('svg');
   font-weight: normal;
   font-style: normal;
@@ -30,6 +30,9 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-list-ul:before {
+  content: '\e902';
+}
 .icon-bookmark-o:before {
   content: '\e900';
 }
