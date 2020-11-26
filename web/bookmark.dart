@@ -1,47 +1,60 @@
 import 'dart:html';
-import 'package:js/js.dart';
-import 'package:node_interop/util.dart' show dartify;
 import 'package:over_react/over_react.dart';
 import 'chrome.dart' as chrome;
-import 'utils.dart' show parseFavorites;
+import 'utils.dart';
 
 part 'bookmark.over_react.g.dart';
 
-mixin BookmarkProps on UiProps {}
+mixin BookmarkProps on UiProps {
+  StateHook<Map> favorites;
+}
 
 UiFactory<BookmarkProps> Bookmark = uiFunction((props) {
+  final pathname = window.location.pathname;
+  final _favorites = props.favorites.value;
+
   final marked = useState(false);
+
+  useEffect(() {
+    window.onClick.listen((event) {
+      final t = event.target as Element;
+      final type = t.tagName;
+
+      if (type == 'A' && !t.getAttribute('href').startsWith('#')) {
+        marked
+            .set(_favorites.containsKey(unifyPathname(t.getAttribute('href'))));
+      }
+    });
+  }, []);
+
+  useEffect(() {
+    marked.set(_favorites.containsKey(unifyPathname(pathname)));
+  }, [_favorites]);
 
   void handleMark(_) {
     final isMarked = marked.value;
+    final f = _favorites;
+    final k = unifyPathname(pathname);
 
     marked.set(!isMarked);
 
-    chrome.storageSyncGet(
-      chrome.StorageObjectLiteral(favorites: {}),
-      allowInterop((items) {
-        final f = dartify(items.favorites);
-        parseFavorites(f);
+    if (isMarked) {
+      f.remove(k);
+    } else {
+      final title = document.title.split(' | ')[0];
 
-        final href = window.location.href;
+      f[k] = title;
+    }
 
-        if (isMarked) {
-          f.remove(href);
-        } else {
-          final title = document.title;
-
-          f[href] = title;
-        }
-
-        chrome.storageSyncSet(chrome.StorageObjectLiteral(favorites: f));
-      }),
-    );
+    props.favorites.set(f);
+    chrome.storageSyncSet({'favorites': f});
   }
 
-  return (Dom.div()..className = 'edp-box')(
+  return (Dom.div()
+    ..className = 'edp-box'
+    ..onClick = handleMark)(
     (Dom.span()
       ..className =
-          '${marked.value ? 'icon-bookmark marked' : 'icon-bookmark-o'} bookmark'
-      ..onClick = handleMark)(),
+          '${marked.value ? 'icon-bookmark marked' : 'icon-bookmark-o'} bookmark')(),
   );
 }, $BookmarkConfig);

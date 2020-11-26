@@ -1,22 +1,27 @@
-@JS('chrome')
 library chrome;
 
-import 'package:js/js.dart';
+import 'dart:js';
+import 'dart:convert';
 
 // storage
 
-@JS('storage.sync.get')
-external void storageSyncGet(StorageObjectLiteral items, Function callback);
+void storageSyncGet(Object items, Function callback) =>
+    context['chrome']['storage']['sync'].callMethod(
+      'get',
+      [
+        JsObject.jsify(items),
+        (items) {
+          final f = json.decode(
+            context['JSON'].callMethod('stringify', [items['favorites']]),
+          );
 
-@JS('storage.sync.set')
-external void storageSyncSet(StorageObjectLiteral items);
+          callback(f);
+        }
+      ],
+    );
 
-@JS()
-@anonymous
-class StorageObjectLiteral {
-  external Map<String, String> get favorites;
-
-  external factory StorageObjectLiteral({
-    Map<String, String> favorites,
-  });
-}
+void storageSyncSet(Object items) =>
+    context['chrome']['storage']['sync'].callMethod(
+      'set',
+      [JsObject.jsify(items)],
+    );

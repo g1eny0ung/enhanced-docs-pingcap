@@ -1,3 +1,7 @@
+$primary: #172d72
+$border-color: #dbe4f0
+$box-width: 40px
+
 #enhanced-docs-pingcap-app
   position: fixed
   bottom: 0
@@ -5,7 +9,7 @@
   z-index: 999
 
   .bookmark
-    color: #172d72
+    color: $primary
     font-size: 20px
 
   .marked
@@ -13,12 +17,15 @@
 
   .bookmark-list
     position: absolute
-    top: -301px
-    left: 0
+    top: -303px
+    left: $box-width
+    min-width: 300px
     height: 300px
     background: #fff
-    border: 1px solid #dbe4f0
+    border: 1px solid $border-color
     border-radius: 3px
+    overflow-y: scroll
+    cursor: auto
 
 .edp-container
   display: flex
@@ -27,12 +34,23 @@
   display: flex
   justify-content: center
   align-items: center
-  width: 40px
-  height: 40px
+  width: $box-width
+  height: $box-width
   background: #fff
-  border: 1px solid #dbe4f0
+  border: 1px solid $border-color
+  border-left: none
   border-bottom: none
   cursor: pointer
 
   &:last-child
     border-top-right-radius: 3px
+
+.edp-list-item
+  display: flex
+  padding: .5rem
+  color: $primary
+  border-bottom: 1px solid $border-color
+  cursor: pointer
+
+  &:hover
+    background: $border-color
