@@ -3,6 +3,11 @@ library chrome;
 import 'dart:js';
 import 'dart:convert';
 
+// getURL
+
+String getURL(String url) =>
+    context['chrome']['extension'].callMethod('getURL', [url]);
+
 // storage
 
 void storageSyncGet(Object items, Function callback) =>

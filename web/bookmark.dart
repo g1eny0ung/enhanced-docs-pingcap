@@ -1,4 +1,5 @@
 import 'dart:html';
+import 'dart:convert';
 import 'package:over_react/over_react.dart';
 import 'chrome.dart' as chrome;
 import 'utils.dart';
@@ -10,31 +11,42 @@ mixin BookmarkProps on UiProps {
 }
 
 UiFactory<BookmarkProps> Bookmark = uiFunction((props) {
-  final pathname = window.location.pathname;
   final _favorites = props.favorites.value;
 
+  final _favoritesRef = useRef(_favorites);
   final marked = useState(false);
 
-  useEffect(() {
-    window.onClick.listen((event) {
-      final t = event.target as Element;
-      final type = t.tagName;
+  void updateMarkedByPathname(String pathname) =>
+      marked.set(_favoritesRef.current.containsKey(unifyPathname(pathname)));
 
-      if (type == 'A' && !t.getAttribute('href').startsWith('#')) {
-        marked
-            .set(_favorites.containsKey(unifyPathname(t.getAttribute('href'))));
-      }
+  void init() {
+    final s = document.createElement('script');
+
+    s.setAttribute('src', chrome.getURL('inject.js'));
+    document.body.append(s);
+    s.onLoad.listen((_) => s.remove());
+
+    document.addEventListener('PASS_LOCATION_TO_EDP', (dynamic event) {
+      final location = json.decode(event.detail);
+
+      updateMarkedByPathname(location['pathname']);
     });
+  }
+
+  useEffect(() {
+    init();
   }, []);
 
   useEffect(() {
-    marked.set(_favorites.containsKey(unifyPathname(pathname)));
+    _favoritesRef.current = _favorites;
+
+    updateMarkedByPathname(window.location.pathname);
   }, [_favorites]);
 
   void handleMark(_) {
     final isMarked = marked.value;
     final f = _favorites;
-    final k = unifyPathname(pathname);
+    final k = unifyPathname(window.location.pathname);
 
     marked.set(!isMarked);
 

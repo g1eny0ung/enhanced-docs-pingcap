@@ -23,7 +23,7 @@
       "js": ["react_with_react_dom_prod.js", "main.dart.js"]
     }
   ],
-  "web_accessible_resources": ["fonts/*"],
+  "web_accessible_resources": ["fonts/*", "inject.js"],
   "icons": {
     "16": "images/icon-16.png",
     "32": "images/icon-32.png",
