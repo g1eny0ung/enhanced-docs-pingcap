@@ -8,17 +8,21 @@ part 'app.over_react.g.dart';
 mixin AppProps on UiProps {}
 
 UiFactory<AppProps> App = uiFunction((props) {
-  final favorites = useState<Map>({});
+  final bookmarks = useState<Map>({});
 
-  void retrieveFavorites() =>
-      chrome.storageSyncGet({'favorites': {}}, favorites.set);
+  void retrieveBookmarks() =>
+      chrome.storageSyncGet({'bookmarks': {}}, bookmarks.set);
 
   useEffect(() {
-    retrieveFavorites();
+    retrieveBookmarks();
   }, []);
 
   return (Dom.div()..className = 'edp-container')(
-    (Bookmark()..favorites = favorites)(),
-    (BookmarkList()..favorites = favorites.value)(),
+    (Bookmark()
+      ..bookmarks = bookmarks.value
+      ..setBookmarks = bookmarks.set)(),
+    (BookmarkList()
+      ..bookmarks = bookmarks.value
+      ..setBookmarks = bookmarks.set)(),
   );
 }, $AppConfig);

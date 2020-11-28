@@ -1,5 +1,6 @@
 import 'dart:html';
 import 'dart:convert';
+import 'package:node_interop/path.dart';
 import 'package:over_react/over_react.dart';
 import 'chrome.dart' as chrome;
 import 'utils.dart';
@@ -7,17 +8,18 @@ import 'utils.dart';
 part 'bookmark.over_react.g.dart';
 
 mixin BookmarkProps on UiProps {
-  StateHook<Map> favorites;
+  Map bookmarks;
+  dynamic setBookmarks;
 }
 
 UiFactory<BookmarkProps> Bookmark = uiFunction((props) {
-  final _favorites = props.favorites.value;
+  final bookmarks = props.bookmarks;
 
-  final _favoritesRef = useRef(_favorites);
+  final bookmarksRef = useRef(bookmarks);
   final marked = useState(false);
 
   void updateMarkedByPathname(String pathname) =>
-      marked.set(_favoritesRef.current.containsKey(unifyPathname(pathname)));
+      marked.set(bookmarksRef.current.containsKey(unifyPathname(pathname)));
 
   void init() {
     final s = document.createElement('script');
@@ -38,32 +40,32 @@ UiFactory<BookmarkProps> Bookmark = uiFunction((props) {
   }, []);
 
   useEffect(() {
-    _favoritesRef.current = _favorites;
+    bookmarksRef.current = bookmarks;
 
     updateMarkedByPathname(window.location.pathname);
-  }, [_favorites]);
+  }, [bookmarks]);
 
   void handleMark(_) {
     final isMarked = marked.value;
-    final f = _favorites;
+    final b = bookmarks;
     final k = unifyPathname(window.location.pathname);
 
-    marked.set(!isMarked);
-
     if (isMarked) {
-      f.remove(k);
+      b.remove(k);
     } else {
       final title = document.title.split(' | ')[0];
 
-      f[k] = title;
+      b[k] = title;
     }
 
-    props.favorites.set(f);
-    chrome.storageSyncSet({'favorites': f});
+    props.setBookmarks(
+        Map.from(b)); // A new object must be created to ensure the re-rendering
+    chrome.storageSyncSet({'bookmarks': b});
   }
 
   return (Dom.div()
     ..className = 'edp-box'
+    ..title = 'Add to Bookmarks'
     ..onClick = handleMark)(
     (Dom.span()
       ..className =

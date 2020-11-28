@@ -2,6 +2,11 @@ $primary: #172d72
 $border-color: #dbe4f0
 $box-width: 40px
 
+=VHCenter()
+  display: flex
+  justify-content: center
+  align-items: center
+
 #enhanced-docs-pingcap-app
   position: fixed
   bottom: 0
@@ -18,7 +23,7 @@ $box-width: 40px
   .bookmark-list
     position: absolute
     top: -303px
-    left: $box-width
+    left: 0
     min-width: 300px
     height: 300px
     background: #fff
@@ -27,13 +32,23 @@ $box-width: 40px
     overflow-y: scroll
     cursor: auto
 
+    &::-webkit-scrollbar
+      display: none
+
+  .bookmark-list-tooltip
+    +VHCenter()
+
+    width: 100%
+    height: 100%
+    padding: 1rem
+    color: $primary
+
 .edp-container
   display: flex
 
 .edp-box
-  display: flex
-  justify-content: center
-  align-items: center
+  +VHCenter()
+
   width: $box-width
   height: $box-width
   background: #fff
@@ -47,10 +62,18 @@ $box-width: 40px
 
 .edp-list-item
   display: flex
-  padding: .5rem
   color: $primary
   border-bottom: 1px solid $border-color
   cursor: pointer
 
   &:hover
     background: $border-color
+
+  div:first-child
+    flex: 1
+    padding: .5rem
+
+  .close
+    +VHCenter()
+
+    width: 2rem

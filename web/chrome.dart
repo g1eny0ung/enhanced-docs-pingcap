@@ -17,7 +17,7 @@ void storageSyncGet(Object items, Function callback) =>
         JsObject.jsify(items),
         (items) {
           final f = json.decode(
-            context['JSON'].callMethod('stringify', [items['favorites']]),
+            context['JSON'].callMethod('stringify', [items['bookmarks']]),
           );
 
           callback(f);
