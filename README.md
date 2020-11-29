@@ -18,7 +18,7 @@
 
 Install [webdev](https://pub.dev/packages/webdev):
 
-> Must install the version **2.6.2** because of dependency constraints.
+> Must install version **2.6.2** because of dependency constraints.
 
 ```sh
 dart pub global activate webdev 2.6.2
@@ -50,6 +50,12 @@ Build to js:
 
 ```sh
 yarn build
+```
+
+Compile sass:
+
+```sh
+yarn sass
 ```
 
 Bundle all production files to `public` dir:
