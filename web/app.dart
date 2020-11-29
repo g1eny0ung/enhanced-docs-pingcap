@@ -12,7 +12,7 @@ UiFactory<AppProps> App = uiFunction((props) {
   final bookmarks = useState<Map>({});
 
   void retrieveBookmarks() =>
-      chrome.storageSyncGet({'bookmarks': {}}, bookmarks.set);
+      chrome.storageSyncGet({'bookmarks': {}}, 'bookmarks', bookmarks.set);
 
   useEffect(() {
     retrieveBookmarks();

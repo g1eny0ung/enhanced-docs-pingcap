@@ -2,6 +2,7 @@ import 'dart:html';
 import 'dart:convert';
 import 'dart:async';
 import 'package:over_react/over_react.dart';
+import 'chrome.dart' as chrome;
 import 'utils.dart' show unifyPathname;
 
 part 'history_list.over_react.g.dart';
@@ -11,6 +12,9 @@ mixin HistoryListProps on UiProps {}
 UiFactory<HistoryListProps> HistoryList = uiFunction((props) {
   final list = useState([]);
   final listRef = useRef(list.value);
+
+  void retrieveHistory() =>
+      chrome.storageSyncGet({'history': []}, 'history', list.set);
 
   void updateList(dynamic location) {
     Timer(
@@ -25,15 +29,20 @@ UiFactory<HistoryListProps> HistoryList = uiFunction((props) {
           return;
         }
 
-        list.set([
-          ...l,
+        final updated = [
+          ...(l.length == 5 ? l.skip(1) : l),
           [pathname, document.title.split(' | ')[0]]
-        ]);
+        ];
+
+        list.set(updated);
+        chrome.storageSyncSet({'history': updated});
       },
     );
   }
 
   void init() {
+    retrieveHistory();
+
     document.addEventListener('PASS_LOCATION_TO_EDP', (dynamic event) {
       final location = json.decode(event.detail);
 

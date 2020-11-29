@@ -10,14 +10,14 @@ String getURL(String url) =>
 
 // storage
 
-void storageSyncGet(Object items, Function callback) =>
+void storageSyncGet(Object items, String key, Function callback) =>
     context['chrome']['storage']['sync'].callMethod(
       'get',
       [
         JsObject.jsify(items),
         (items) {
           final f = json.decode(
-            context['JSON'].callMethod('stringify', [items['bookmarks']]),
+            context['JSON'].callMethod('stringify', [items[key]]),
           );
 
           callback(f);
