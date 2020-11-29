@@ -63,9 +63,10 @@ UiFactory<HistoryListProps> HistoryList = uiFunction((props) {
       };
 
   dynamic onItemRemove(d) => (SyntheticEvent event) {
-        final l = list.value;
+        final updated =list.value.where((item) => item[0] != d[0]).toList();
 
-        list.set(l.where((item) => item[0] != d[0]).toList());
+        list.set(updated);
+        chrome.storageSyncSet({'history': updated});
       };
 
   return Fragment()(list.value.map((d) => (Dom.div()
