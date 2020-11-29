@@ -2,6 +2,22 @@
 
 > Browser extension that puts wings on PingCAP Docs.
 
+## Browsers support
+
+| <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/chrome/chrome_48x48.png" alt="Chrome" width="24px" height="24px" /> |
+| ---------------------------------------------------------------------------------------------------------------------------------------------- |
+| Chrome                                                                                                                                         |
+
+Currently, this plugin has the following features:
+
+- **Bookmarks support**
+
+  This allows you to bookmark the page for viewing later.
+
+- **History support**
+
+  Record document browsing history, currently record 5 items at most.
+
 ## How to development
 
 > Make sure that the Dart SDK was installed. You can also use the Dart SDK bundled with Flutter.
