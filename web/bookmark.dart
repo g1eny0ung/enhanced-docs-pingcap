@@ -1,6 +1,5 @@
 import 'dart:html';
 import 'dart:convert';
-import 'package:node_interop/path.dart';
 import 'package:over_react/over_react.dart';
 import 'chrome.dart' as chrome;
 import 'utils.dart';

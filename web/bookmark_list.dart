@@ -21,8 +21,6 @@ UiFactory<BookmarkListProps> BookmarkList = uiFunction((props) {
       };
 
   dynamic onItemRemove(d) => (SyntheticEvent event) {
-        event.stopPropagation();
-
         final b = bookmarks;
 
         b.remove(d.key);
@@ -32,10 +30,11 @@ UiFactory<BookmarkListProps> BookmarkList = uiFunction((props) {
       };
 
   ReactElement renderListItem(d) => (Dom.div()
-        ..key = d.key + '|' + d.value
-        ..className = 'edp-list-item'
-        ..onClick = onItemClick(d))(
-        (Dom.div()..title = d.key)(d.value),
+        ..key = d.key
+        ..className = 'edp-list-item')(
+        (Dom.div()
+          ..title = d.key
+          ..onClick = onItemClick(d))(d.value),
         (Dom.span()
           ..className = 'close icon-close'
           ..title = 'Remove'

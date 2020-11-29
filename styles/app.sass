@@ -22,18 +22,15 @@ $box-width: 40px
 
   .bookmark-list
     position: absolute
-    top: -303px
+    top: -453px
     left: 0
     min-width: 300px
-    height: 300px
+    height: 450px
     background: #fff
     border: 1px solid $border-color
     border-radius: 3px
     overflow-y: scroll
     cursor: auto
-
-    &::-webkit-scrollbar
-      display: none
 
   .bookmark-list-tooltip
     +VHCenter()
@@ -42,6 +39,9 @@ $box-width: 40px
     height: 100%
     padding: 1rem
     color: $primary
+
+  .history-list-item
+    width: auto
 
 .edp-container
   display: flex
@@ -63,6 +63,7 @@ $box-width: 40px
 .edp-list-item
   display: flex
   color: $primary
+  font-size: .875rem
   border-bottom: 1px solid $border-color
   cursor: pointer
 

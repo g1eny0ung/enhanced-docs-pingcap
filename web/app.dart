@@ -2,6 +2,7 @@ import 'package:over_react/over_react.dart';
 import 'chrome.dart' as chrome;
 import 'bookmark.dart';
 import 'bookmark_list.dart';
+import 'history_list.dart';
 
 part 'app.over_react.g.dart';
 
@@ -24,5 +25,6 @@ UiFactory<AppProps> App = uiFunction((props) {
     (BookmarkList()
       ..bookmarks = bookmarks.value
       ..setBookmarks = bookmarks.set)(),
+    HistoryList()(),
   );
 }, $AppConfig);
