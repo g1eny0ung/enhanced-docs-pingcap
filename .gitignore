@@ -8,7 +8,13 @@ build/
 # Directory created by dartdoc
 doc/api/
 
+.DS_Store
+
 public/app.css
 public/react_with_react_dom_prod.js
 public/main.dart.js
+
+firefox/*
+firefox/!iconmoon.css
+
 enhanced-docs-pingcap-*.zip
