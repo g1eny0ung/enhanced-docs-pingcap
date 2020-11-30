@@ -7,6 +7,7 @@
     "build": "dart pub global run webdev build",
     "sass": "dart bin/compile-sass.dart styles/app.sass public/app.css",
     "bundle": "yarn build && ./bundle.sh && yarn sass",
-    "release": "yarn bundle && ./release.sh"
+    "release:chrome": "yarn bundle && ./release.sh",
+    "release:firefox": "yarn bundle && ./release.sh firefox"
   }
 }

@@ -5,7 +5,7 @@
   "manifest_version": 2,
   "permissions": ["storage", "declarativeContent"],
   "background": {
-    "scripts": ["background.js"],
+    "scripts": ["browser-polyfill.min.js", "background.js"],
     "persistent": false
   },
   "page_action": {
@@ -20,7 +20,11 @@
     {
       "matches": ["https://docs.pingcap.com/*"],
       "css": ["iconmoon.css", "app.css"],
-      "js": ["react_with_react_dom_prod.js", "main.dart.js"]
+      "js": [
+        "browser-polyfill.min.js",
+        "react_with_react_dom_prod.js",
+        "main.dart.js"
+      ]
     }
   ],
   "web_accessible_resources": ["fonts/*", "inject.js"],

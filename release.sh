@@ -1,6 +1,13 @@
-RELEASE=enhanced-docs-pingcap
+NAME=enhanced-docs-pingcap
+PLATFORM=chrome
 
-if [ -f $RELEASE ]; then
+if [ -n "$1" ]; then
+  PLATFORM=$1
+fi
+
+RELEASE="${NAME}-${PLATFORM}"
+
+if [ -f "${RELEASE}.zip" ]; then
   rm "${RELEASE}.zip"
 fi
 
