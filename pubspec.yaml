@@ -1,7 +1,7 @@
 name: enhanced_docs_pingcap
 description: Browser extension that puts wings on PingCAP Docs.
 version: 2.0.0
-#homepage: https://www.example.com
+homepage: https://github.com/g1eny0ung/enhanced-docs-pingcap
 
 environment:
   sdk: '>=2.10.0 <3.0.0'

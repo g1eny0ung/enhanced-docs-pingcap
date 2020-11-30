@@ -6,6 +6,7 @@
     "serve": "dart pub global run webdev serve",
     "build": "dart pub global run webdev build",
     "sass": "dart bin/compile-sass.dart styles/app.sass public/app.css",
-    "bundle": "yarn build && ./bundle.sh && yarn sass"
+    "bundle": "yarn build && ./bundle.sh && yarn sass",
+    "release": "yarn bundle && ./release.sh"
   }
 }
