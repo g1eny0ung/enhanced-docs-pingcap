@@ -4,9 +4,9 @@
 
 ## Browsers support
 
-| <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/chrome/chrome_48x48.png" alt="Chrome" width="24px" height="24px" /> |
-| ---------------------------------------------------------------------------------------------------------------------------------------------- |
-| Chrome                                                                                                                                         |
+| <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/chrome/chrome_48x48.png" alt="Chrome" width="24px" height="24px" /><br />Chrome |
+| :--------------------------------------------------------------------------------------------------------------------------------------------------------: |
+|                          [Link](https://chrome.google.com/webstore/detail/enhanced-pingcap-docs/gmlnojpblggphjoccipabhkgdlnppdid)                          |
 
 Currently, this plugin has the following features:
 
