@@ -16,6 +16,7 @@ public/main.dart.js
 
 firefox/*
 !firefox/manifest.json
+!firefox/preset.js
 !firefox/iconmoon.css
 
 enhanced-docs-pingcap-*.zip

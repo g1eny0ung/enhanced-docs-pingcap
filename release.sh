@@ -8,7 +8,7 @@ fi
 
 if [ "$PLATFORM" = "firefox" ]; then
   LIST=firefox
-  cd public && cp -r `ls | grep -v "manifest\|background\|iconmoon"` ../firefox && cd ..
+  cd public && cp -r `ls | grep -v "manifest\|iconmoon"` ../firefox && cd ..
 fi
 
 RELEASE="${NAME}-${PLATFORM}"
