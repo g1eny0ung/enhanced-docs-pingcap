@@ -15,6 +15,7 @@ public/react_with_react_dom_prod.js
 public/main.dart.js
 
 firefox/*
-firefox/!iconmoon.css
+!firefox/manifest.json
+!firefox/iconmoon.css
 
 enhanced-docs-pingcap-*.zip

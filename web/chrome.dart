@@ -6,7 +6,7 @@ import 'dart:convert';
 // getURL
 
 String getURL(String url) =>
-    context['browser']['extension'].callMethod('getURL', [url]);
+    context['browser']['runtime'].callMethod('getURL', [url]);
 
 // storage
 
