@@ -8,7 +8,6 @@ fi
 
 if [ "$PLATFORM" = "firefox" ]; then
   SOURCE=firefox
-  cd public && cp -r `ls | grep -v "manifest\|background\|iconmoon"` ../firefox && cd ..
 fi
 
 RELEASE="${NAME}-${PLATFORM}"

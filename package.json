@@ -5,9 +5,9 @@
     "deps": "dart pub get",
     "build": "dart pub global run webdev build",
     "sass": "dart bin/compile-sass.dart styles/app.sass public/app.css",
-    "bundle": "yarn build && ./bundle.sh && yarn sass",
-    "release:chrome": "yarn bundle && ./release.sh",
-    "release:firefox": "yarn bundle && ./release.sh firefox",
-    "release:all": "yarn bundle && ./release.sh && ./release.sh firefox"
+    "bundle:chrome": "yarn build && ./bundle.sh && yarn sass",
+    "bundle:firefox": "yarn build && ./bundle.sh firefox && yarn sass",
+    "release:chrome": "yarn bundle:chrome && ./release.sh",
+    "release:firefox": "yarn bundle:firefox && ./release.sh firefox"
   }
 }

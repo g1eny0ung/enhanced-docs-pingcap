@@ -6,7 +6,7 @@
 
 | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/chrome/chrome_48x48.png" alt="Chrome" width="24px" height="24px" /><br />Chrome |
 | :--------------------------------------------------------------------------------------------------------------------------------------------------------: |
-|                          [Link](https://chrome.google.com/webstore/detail/enhanced-pingcap-docs/gmlnojpblggphjoccipabhkgdlnppdid)                          |
+|                       [Web Store](https://chrome.google.com/webstore/detail/enhanced-pingcap-docs/gmlnojpblggphjoccipabhkgdlnppdid)                        |
 
 Currently, this plugin has the following features:
 
@@ -48,10 +48,12 @@ Some useful commands were defined in `package.json` so that you can use `npm` or
 {
   "scripts": {
     "deps": "dart pub get",
-    "serve": "dart pub global run webdev serve",
     "build": "dart pub global run webdev build",
     "sass": "dart bin/compile-sass.dart styles/app.sass public/app.css",
-    "bundle": "yarn build && ./bundle.sh && yarn sass"
+    "bundle:chrome": "yarn build && ./bundle.sh && yarn sass",
+    "bundle:firefox": "yarn build && ./bundle.sh firefox && yarn sass",
+    "release:chrome": "yarn bundle:chrome && ./release.sh",
+    "release:firefox": "yarn bundle:firefox && ./release.sh firefox"
   }
 }
 ```
@@ -62,7 +64,7 @@ For example, get dependencies:
 yarn deps
 ```
 
-Build to js:
+Build `*.dart` to js:
 
 ```sh
 yarn build
@@ -74,15 +76,34 @@ Compile sass:
 yarn sass
 ```
 
-Bundle all production files to `public` dir:
+Bundle all production files to `public` dir (for Chrome):
 
 ```sh
-yarn bundle
+yarn bundle:chrome
 ```
 
 ### Preview changes
 
-Run the `bundle` script and load the `public` dir in [chrome://extensions](chrome://extensions).
+#### Chrome
+
+Run the `bundle` script and then load the `public` dir in `chrome://extensions`.
+
+After making new changes, just run the script again and click the reload button.
+
+#### Firefox
+
+You can use [web-ext](https://github.com/mozilla/web-ext) to help develop extensions in Firefox.
+
+Run `npm install web-ext -g` to install it.
+
+Here is an example that develops this extension in the firefox developer edition.
+
+```sh
+yarn bundle:firefox
+web-ext run -s firefox -f firefoxdeveloperedition
+```
+
+After making new changes, just run `yarn bundle:firefox` again and then the web-ext will reload it automatically.
 
 ## License
 
