@@ -86,9 +86,9 @@ yarn bundle:chrome
 
 #### Chrome
 
-Run the `bundle` script and then load the `public` dir in `chrome://extensions`.
+Run the `bundle:chrome` script and then load the `public` dir in `chrome://extensions`.
 
-After making new changes, just run the script again and click the reload button.
+After making new changes, just run the script again and then go back to the extensions page and click the `reload` button.
 
 #### Firefox
 
