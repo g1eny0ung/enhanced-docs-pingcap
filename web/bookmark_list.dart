@@ -1,6 +1,7 @@
 import 'dart:html';
 import 'package:over_react/over_react.dart';
 import 'chrome.dart' as chrome;
+import 'utils.dart';
 
 part 'bookmark_list.over_react.g.dart';
 
@@ -14,7 +15,16 @@ UiFactory<BookmarkListProps> BookmarkList = uiFunction((props) {
 
   final folded = useState(true);
 
-  void onClick(_) => folded.set(!folded.value);
+  void onClick(_) {
+    if (folded.value) {
+      clickOutside(
+        document.querySelector('.bookmark-list'),
+        () => folded.set(true),
+      );
+    }
+
+    folded.set(!folded.value);
+  }
 
   dynamic onItemClick(d) => (_) {
         document.dispatchEvent(CustomEvent('EDP_NAVIGATE', detail: d.key));

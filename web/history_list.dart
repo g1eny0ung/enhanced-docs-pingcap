@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'dart:async';
 import 'package:over_react/over_react.dart';
 import 'chrome.dart' as chrome;
-import 'utils.dart' show unifyPathname;
+import 'utils.dart';
 
 part 'history_list.over_react.g.dart';
 
@@ -63,7 +63,7 @@ UiFactory<HistoryListProps> HistoryList = uiFunction((props) {
       };
 
   dynamic onItemRemove(d) => (SyntheticEvent event) {
-        final updated =list.value.where((item) => item[0] != d[0]).toList();
+        final updated = list.value.where((item) => item[0] != d[0]).toList();
 
         list.set(updated);
         chrome.storageSyncSet({'history': updated});
