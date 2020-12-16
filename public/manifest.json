@@ -3,7 +3,12 @@
   "version": "2.0.1",
   "description": "Put wings on PingCAP Docs. https://docs.pingcap.com/",
   "manifest_version": 2,
-  "permissions": ["storage", "declarativeContent"],
+  "permissions": [
+    "storage",
+    "declarativeContent",
+    "tabs",
+    "https://docs.pingcap.com/"
+  ],
   "background": {
     "scripts": ["browser-polyfill.min.js", "background.js"],
     "persistent": false
@@ -33,5 +38,13 @@
     "32": "images/icon-32.png",
     "48": "images/icon-48.png",
     "128": "images/icon-128.png"
+  },
+  "commands": {
+    "lang-switch": {
+      "suggested_key": {
+        "default": "Alt+S"
+      },
+      "description": "Switch between Chinese and English documents"
+    }
   }
 }

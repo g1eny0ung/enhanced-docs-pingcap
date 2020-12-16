@@ -12,3 +12,11 @@ chrome.runtime.onInstalled.addListener(function () {
     ])
   })
 })
+
+chrome.commands.onCommand.addListener(function (command) {
+  if (command === 'lang-switch') {
+    chrome.tabs.executeScript({
+      file: 'lang-switch.js',
+    })
+  }
+})
