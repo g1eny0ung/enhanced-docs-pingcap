@@ -4,9 +4,9 @@
 
 ## Browsers support
 
-| <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/chrome/chrome_48x48.png" alt="Chrome" width="24px" height="24px" /><br />Chrome |
-| :--------------------------------------------------------------------------------------------------------------------------------------------------------: |
-|                       [Web Store](https://chrome.google.com/webstore/detail/enhanced-pingcap-docs/gmlnojpblggphjoccipabhkgdlnppdid)                        |
+| <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/chrome/chrome_48x48.png" alt="Chrome" width="24px" height="24px" /><br />Chrome | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/firefox/firefox_48x48.png" alt="Firefox" width="24px" height="24px" /><br />Firefox |
+| :--------------------------------------------------------------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------------------------------------------------------------: |
+|                       [Web Store](https://chrome.google.com/webstore/detail/enhanced-pingcap-docs/gmlnojpblggphjoccipabhkgdlnppdid)                        |                                        [ADD-ONS](https://addons.mozilla.org/en-US/firefox/addon/enhanced-pingcap-docs)                                         |
 
 Currently, this plugin has the following features:
 
