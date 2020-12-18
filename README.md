@@ -1,4 +1,4 @@
-# Enhanced docs.pingcap
+# Enhanced PingCAP Docs
 
 > Browser extension that puts wings on PingCAP Docs.
 
@@ -18,7 +18,7 @@ Currently, this plugin has the following features:
 
   Record document browsing history, currently record 5 items at most.
 
-- **Lang Switch**
+- **Lang switch**
 
   Shortcut to switch between Chinese and English documents.
 
@@ -62,7 +62,7 @@ Some useful commands were defined in `package.json` so that you can use `npm` or
 }
 ```
 
-For example, get dependencies:
+For example, get dependencies first:
 
 ```sh
 yarn deps
