@@ -16,6 +16,7 @@ public/main.dart.js
 
 firefox/*
 !firefox/manifest.json
+!firefox/background.js
 !firefox/preset.js
 !firefox/iconmoon.css
 
