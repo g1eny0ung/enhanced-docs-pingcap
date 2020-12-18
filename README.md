@@ -18,6 +18,10 @@ Currently, this plugin has the following features:
 
   Record document browsing history, currently record 5 items at most.
 
+- **Lang Switch**
+
+  Shortcut to switch between Chinese and English documents.
+
 ## How to development
 
 > Make sure that the Dart SDK was installed. You can also use the Dart SDK bundled with Flutter.
