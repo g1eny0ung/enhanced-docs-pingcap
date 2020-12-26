@@ -10,7 +10,7 @@ String getURL(String url) =>
 
 // storage
 
-void storageSyncGet(Object items, String key, Function callback) =>
+void storageSyncGet(Object items, dynamic key, Function callback) =>
     context['browser']['storage']['sync'].callMethod(
       'get',
       [
@@ -20,9 +20,23 @@ void storageSyncGet(Object items, String key, Function callback) =>
       'then',
       [
         (items) {
-          final f = json.decode(
-            context['JSON'].callMethod('stringify', [items[key]]),
-          );
+          var f;
+
+          if (key is String) {
+            f = json.decode(
+              context['JSON'].callMethod('stringify', [items[key]]),
+            );
+          }
+
+          if (key is List) {
+            f = {};
+
+            key.forEach(
+              (k) => f[k] = json.decode(
+                context['JSON'].callMethod('stringify', [items[k]]),
+              ),
+            );
+          }
 
           callback(f);
         }

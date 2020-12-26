@@ -11,26 +11,44 @@ mixin HistoryListProps on UiProps {}
 
 UiFactory<HistoryListProps> HistoryList = uiFunction((props) {
   final list = useState([]);
+  final historyNum = useRef(0);
   final listRef = useRef(list.value);
 
-  void retrieveHistory() =>
-      chrome.storageSyncGet({'history': []}, 'history', list.set);
+  void retrieveHistory() {
+    chrome.storageSyncGet(
+      {
+        'history': [],
+        'historyNum': 5,
+      },
+      [
+        'history',
+        'historyNum',
+      ],
+      (f) {
+        final historyLength = f['history'].length;
+        final num = int.parse(f['historyNum']);
+
+        list.set(historyLength > num
+            ? f['history'].sublist(historyLength - num)
+            : f['history']);
+        historyNum.current = num;
+      },
+    );
+  }
 
   void updateList(dynamic location) {
     Timer(
       Duration(seconds: 1),
       () {
-        final l = listRef.current;
+        var l = listRef.current;
         final pathname = unifyPathname(location['pathname']);
 
-        if (l.isNotEmpty &&
-            l.singleWhere((d) => d[0] == pathname, orElse: () => null) !=
-                null) {
-          return;
+        if (l.isNotEmpty) {
+          l.removeWhere((d) => d[0] == pathname);
         }
 
         final updated = [
-          ...(l.length == 5 ? l.skip(1) : l),
+          ...(l.length == historyNum.current ? l.skip(1) : l),
           [pathname, document.title.split(' | ')[0]]
         ];
 
@@ -74,10 +92,9 @@ UiFactory<HistoryListProps> HistoryList = uiFunction((props) {
 
     return (Dom.div()
       ..key = d[0]
-      ..className = 'edp-box edp-list-item history-list-item')(
-      (Dom.div()
-        ..title = d[0]
-        ..onClick = onItemClick(d))(
+      ..className = 'edp-box edp-list-item history-list-item'
+      ..title = d[1])(
+      (Dom.div()..onClick = onItemClick(d))(
         [
           (Dom.span()..className = 'meta')(
             d[0].startsWith('/zh') ? 'zh' : 'en',
@@ -86,7 +103,7 @@ UiFactory<HistoryListProps> HistoryList = uiFunction((props) {
             (Dom.span()..className = 'meta')(
               version,
             ),
-          Dom.span()(d[1]),
+          (Dom.span()..className = 'content')(d[1]),
         ],
       ),
       (Dom.span()

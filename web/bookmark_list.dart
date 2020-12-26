@@ -44,10 +44,9 @@ UiFactory<BookmarkListProps> BookmarkList = uiFunction((props) {
 
     return (Dom.div()
       ..key = d.key
-      ..className = 'edp-list-item')(
-      (Dom.div()
-        ..title = d.key
-        ..onClick = onItemClick(d))(
+      ..className = 'edp-list-item'
+      ..title = d.value)(
+      (Dom.div()..onClick = onItemClick(d))(
         [
           (Dom.span()..className = 'meta')(
             d.key.startsWith('/zh') ? 'zh' : 'en',
@@ -56,7 +55,7 @@ UiFactory<BookmarkListProps> BookmarkList = uiFunction((props) {
             (Dom.span()..className = 'meta')(
               version,
             ),
-          Dom.span()(d.value),
+          (Dom.span()..className = 'content')(d.value),
         ],
       ),
       (Dom.span()
