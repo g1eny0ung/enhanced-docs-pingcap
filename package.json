@@ -6,7 +6,7 @@
     "build": "dart pub global run webdev build",
     "sass": "dart bin/compile-sass.dart styles/app.sass public/app.css",
     "bundle:chrome": "yarn build && ./bundle.sh && yarn sass",
-    "bundle:firefox": "yarn build && ./bundle.sh firefox && yarn sass",
+    "bundle:firefox": "yarn build && yarn sass && ./bundle.sh firefox",
     "release:chrome": "yarn bundle:chrome && ./release.sh",
     "release:firefox": "yarn bundle:firefox && ./release.sh firefox"
   }

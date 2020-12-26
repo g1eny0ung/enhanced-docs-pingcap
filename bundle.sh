@@ -8,5 +8,5 @@ if [ -n "$1" ]; then
 fi
 
 if [ "$PLATFORM" = "firefox" ]; then
-  cd public && cp -r `ls | grep -v "manifest\|background\|iconmoon"` ../firefox && cd ..
+  cd public && cp -r `ls | grep -v "manifest\|background\|options.js\|iconmoon"` ../firefox && cd ..
 fi

@@ -18,6 +18,7 @@ firefox/*
 !firefox/manifest.json
 !firefox/background.js
 !firefox/preset.js
+!firefox/options.js
 !firefox/iconmoon.css
 
 enhanced-docs-pingcap-*.zip

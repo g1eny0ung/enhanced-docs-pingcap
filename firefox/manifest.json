@@ -42,9 +42,12 @@
   "commands": {
     "lang-switch": {
       "suggested_key": {
-        "default": "Alt+S"
+        "default": "Alt+W"
       },
       "description": "Switch between Chinese and English documents"
     }
+  },
+  "options_ui": {
+    "page": "options.html"
   }
 }
