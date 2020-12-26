@@ -2,6 +2,7 @@ import 'dart:html';
 import 'package:over_react/over_react.dart';
 import 'chrome.dart' as chrome;
 import 'utils.dart';
+import 'list_item.dart';
 
 part 'bookmark_list.over_react.g.dart';
 
@@ -27,43 +28,17 @@ UiFactory<BookmarkListProps> BookmarkList = uiFunction((props) {
   }
 
   dynamic onItemClick(d) => (_) {
-        document.dispatchEvent(CustomEvent('EDP_NAVIGATE', detail: d.key));
+        document.dispatchEvent(CustomEvent('EDP_NAVIGATE', detail: d[0]));
       };
 
   dynamic onItemRemove(d) => (SyntheticEvent event) {
         final b = bookmarks;
 
-        b.remove(d.key);
+        b.remove(d[0]);
 
         props.setBookmarks(Map.from(b));
         chrome.storageSyncSet({'bookmarks': b});
       };
-
-  ReactElement renderListItem(d) {
-    final version = detectDocVersion(d.key);
-
-    return (Dom.div()
-      ..key = d.key
-      ..className = 'edp-list-item'
-      ..title = d.value)(
-      (Dom.div()..onClick = onItemClick(d))(
-        [
-          (Dom.span()..className = 'meta')(
-            d.key.startsWith('/zh') ? 'zh' : 'en',
-          ),
-          if (version != null)
-            (Dom.span()..className = 'meta')(
-              version,
-            ),
-          (Dom.span()..className = 'content')(d.value),
-        ],
-      ),
-      (Dom.span()
-        ..className = 'close icon-close'
-        ..title = 'Remove'
-        ..onClick = onItemRemove(d))(),
-    );
-  }
 
   return (Dom.div()..style = {'position': 'relative'})(
     (Dom.div()
@@ -76,7 +51,12 @@ UiFactory<BookmarkListProps> BookmarkList = uiFunction((props) {
       ..className = 'bookmark-list'
       ..style = {'display': folded.value ? 'none' : 'block'})(
       bookmarks.isNotEmpty
-          ? bookmarks.entries.map(renderListItem)
+          ? bookmarks.entries.map(
+              (d) => (ListItem()
+                ..data = [d.key, d.value]
+                ..onItemClick = onItemClick
+                ..onItemRemove = onItemRemove)(),
+            )
           : (Dom.div()..className = 'bookmark-list-tooltip')(
               'Click the button in the lower left corner to add the first bookmark.'),
     ),

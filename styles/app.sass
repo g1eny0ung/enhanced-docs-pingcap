@@ -74,19 +74,25 @@ $box-width: 40px
   &:hover
     background: $border-color
 
-  div:first-child
+  > div:first-child
+    position: relative
     display: flex
     align-items: center
     padding: .5rem
 
-  .meta
-    +VHCenter()
+  .meta-container
+    position: absolute
+    top: -12px
+    width: 75px
 
+  .meta
+    display: inline-block
     height: 1rem
-    margin-right: 3px
     padding: 3px
     background: $primary
     color: #fff
+    font-size: .5rem
+    line-height: .5rem
     border-radius: 3px
 
   .content

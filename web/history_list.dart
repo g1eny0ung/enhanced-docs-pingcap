@@ -1,17 +1,21 @@
 import 'dart:html';
 import 'dart:convert';
 import 'dart:async';
+import 'dart:math';
 import 'package:over_react/over_react.dart';
 import 'chrome.dart' as chrome;
 import 'utils.dart';
+import 'list_item.dart';
 
 part 'history_list.over_react.g.dart';
 
 mixin HistoryListProps on UiProps {}
 
 UiFactory<HistoryListProps> HistoryList = uiFunction((props) {
+  final bodyWidth75 = (document.body.clientWidth * .75).round();
+
   final list = useState([]);
-  final historyNum = useRef(0);
+  final historyNum = useRef(5);
   final listRef = useRef(list.value);
 
   void retrieveHistory() {
@@ -87,33 +91,16 @@ UiFactory<HistoryListProps> HistoryList = uiFunction((props) {
         chrome.storageSyncSet({'history': updated});
       };
 
-  ReactElement renderListItem(d) {
-    final version = detectDocVersion(d[0]);
-
-    return (Dom.div()
-      ..key = d[0]
-      ..className = 'edp-box edp-list-item history-list-item'
-      ..title = d[1])(
-      (Dom.div()..onClick = onItemClick(d))(
-        [
-          (Dom.span()..className = 'meta')(
-            d[0].startsWith('/zh') ? 'zh' : 'en',
-          ),
-          if (version != null)
-            (Dom.span()..className = 'meta')(
-              version,
-            ),
-          (Dom.span()..className = 'content')(d[1]),
-        ],
-      ),
-      (Dom.span()
-        ..className = 'close icon-close'
-        ..title = 'Remove'
-        ..onClick = onItemRemove(d))(),
-    );
-  }
-
   return Fragment()(
-    list.value.map(renderListItem),
+    list.value.map(
+      (d) => (ListItem()
+        ..data = d
+        ..onItemClick = onItemClick
+        ..onItemRemove = onItemRemove
+        ..className = 'edp-box history-list-item'
+        ..contentStyle = {
+          'maxWidth': max((bodyWidth75 / historyNum.current - 50).round(), 32),
+        })(),
+    ),
   );
 }, $HistoryListConfig);
