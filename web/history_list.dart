@@ -99,7 +99,7 @@ UiFactory<HistoryListProps> HistoryList = uiFunction((props) {
         ..onItemRemove = onItemRemove
         ..className = 'edp-box history-list-item'
         ..contentStyle = {
-          'maxWidth': max((bodyWidth75 / historyNum.current - 50).round(), 32),
+          'maxWidth': max((bodyWidth75 / list.value.length - 100).round(), 16),
         })(),
     ),
   );

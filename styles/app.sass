@@ -75,19 +75,14 @@ $box-width: 40px
     background: $border-color
 
   > div:first-child
-    position: relative
     display: flex
     align-items: center
     padding: .5rem
 
-  .meta-container
-    position: absolute
-    top: -12px
-    width: 75px
-
   .meta
     display: inline-block
     height: 1rem
+    margin-right: 3px
     padding: 3px
     background: $primary
     color: #fff
@@ -96,7 +91,6 @@ $box-width: 40px
     border-radius: 3px
 
   .content
-    max-width: 150px
     text-overflow: ellipsis
     overflow: hidden
     white-space: nowrap
@@ -104,4 +98,4 @@ $box-width: 40px
   .close
     +VHCenter()
 
-    width: 2rem
+    width: 1.5rem

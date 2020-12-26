@@ -1,5 +1,3 @@
-import 'dart:html';
-
 import 'package:over_react/over_react.dart';
 import 'utils.dart';
 
@@ -20,22 +18,16 @@ UiFactory<ListItemProps> ListItem = uiFunction((props) {
     ..key = d[0]
     ..className =
         'edp-list-item${props.className != null ? ' ${props.className}' : ''}'
-    ..title = d[1])(
+    ..title = d[0] + ' ' + d[1])(
     (Dom.div()..onClick = props.onItemClick(d))(
       [
-        (Dom.div()..className = 'meta-container')(
-          [
-            (Dom.span()
-              ..className = 'meta'
-              ..style = {'marginRight': 3})(
-              d[0].startsWith('/zh') ? 'zh' : 'en',
-            ),
-            if (version != null)
-              (Dom.span()..className = 'meta')(
-                version,
-              ),
-          ],
+        (Dom.span()..className = 'meta')(
+          d[0].startsWith('/zh') ? 'zh' : 'en',
         ),
+        if (version != null)
+          (Dom.span()..className = 'meta')(
+            version,
+          ),
         (Dom.span()
           ..className = 'content'
           ..style = props.contentStyle)(d[1]),

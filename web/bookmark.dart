@@ -62,14 +62,12 @@ UiFactory<BookmarkProps> Bookmark = uiFunction((props) {
     chrome.storageSyncSet({'bookmarks': b});
   }
 
-  return Dom.div()(
-    (Dom.div()
-      ..className = 'edp-box'
-      ..title = 'Add to Bookmarks'
-      ..onClick = handleMark)(
-      (Dom.span()
-        ..className =
-            '${marked.value ? 'icon-bookmark marked' : 'icon-bookmark-o'} bookmark')(),
-    ),
+  return (Dom.div()
+    ..className = 'edp-box'
+    ..title = 'Add to Bookmarks'
+    ..onClick = handleMark)(
+    (Dom.span()
+      ..className =
+          '${marked.value ? 'icon-bookmark marked' : 'icon-bookmark-o'} bookmark')(),
   );
 }, $BookmarkConfig);
