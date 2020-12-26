@@ -17,13 +17,13 @@ UiFactory<BookmarkListProps> BookmarkList = uiFunction((props) {
 
   void onClick(_) {
     if (folded.value) {
-      clickOutside(
+      folded.set(false);
+
+      onClickOutside(
         document.querySelector('.bookmark-list'),
         () => folded.set(true),
       );
     }
-
-    folded.set(!folded.value);
   }
 
   dynamic onItemClick(d) => (_) {

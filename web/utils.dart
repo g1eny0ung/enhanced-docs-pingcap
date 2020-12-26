@@ -4,8 +4,10 @@ String unifyPathname(String pathname) {
   return pathname.endsWith('/') ? pathname : '$pathname/';
 }
 
-void clickOutside(Element el, Function callback) {
+void onClickOutside(Element el, Function callback) {
   void handler(Event event) {
+    event.stopPropagation();
+
     if (!el.contains(event.target)) {
       callback();
 
