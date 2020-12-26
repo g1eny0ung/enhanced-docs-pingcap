@@ -39,30 +39,47 @@ UiFactory<BookmarkListProps> BookmarkList = uiFunction((props) {
         chrome.storageSyncSet({'bookmarks': b});
       };
 
-  ReactElement renderListItem(d) => (Dom.div()
-        ..key = d.key
-        ..className = 'edp-list-item')(
-        (Dom.div()
-          ..title = d.key
-          ..onClick = onItemClick(d))(d.value),
-        (Dom.span()
-          ..className = 'close icon-close'
-          ..title = 'Remove'
-          ..onClick = onItemRemove(d))(),
-      );
+  ReactElement renderListItem(d) {
+    final version = detectDocVersion(d.key);
+
+    return (Dom.div()
+      ..key = d.key
+      ..className = 'edp-list-item')(
+      (Dom.div()
+        ..title = d.key
+        ..onClick = onItemClick(d))(
+        [
+          (Dom.span()..className = 'meta')(
+            d.key.startsWith('/zh') ? 'zh' : 'en',
+          ),
+          if (version != null)
+            (Dom.span()..className = 'meta')(
+              version,
+            ),
+          Dom.span()(d.value),
+        ],
+      ),
+      (Dom.span()
+        ..className = 'close icon-close'
+        ..title = 'Remove'
+        ..onClick = onItemRemove(d))(),
+    );
+  }
 
   return (Dom.div()..style = {'position': 'relative'})(
-      (Dom.div()
-        ..className = 'edp-box'
-        ..title = 'Bookmarks'
-        ..onClick = onClick)(
-        (Dom.span()..className = 'icon-list-ul')(),
-      ),
-      (Dom.div()
-        ..className = 'bookmark-list'
-        ..style = {'display': folded.value ? 'none' : 'block'})(bookmarks
-              .isNotEmpty
+    (Dom.div()
+      ..className = 'edp-box'
+      ..title = 'Bookmarks'
+      ..onClick = onClick)(
+      (Dom.span()..className = 'icon-list-ul')(),
+    ),
+    (Dom.div()
+      ..className = 'bookmark-list'
+      ..style = {'display': folded.value ? 'none' : 'block'})(
+      bookmarks.isNotEmpty
           ? bookmarks.entries.map(renderListItem)
           : (Dom.div()..className = 'bookmark-list-tooltip')(
-              'Click the button in the lower left corner to add the first bookmark.')));
+              'Click the button in the lower left corner to add the first bookmark.'),
+    ),
+  );
 }, $BookmarkListConfig);

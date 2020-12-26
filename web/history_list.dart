@@ -69,15 +69,34 @@ UiFactory<HistoryListProps> HistoryList = uiFunction((props) {
         chrome.storageSyncSet({'history': updated});
       };
 
-  return Fragment()(list.value.map((d) => (Dom.div()
-        ..key = d[0]
-        ..className = 'edp-box edp-list-item history-list-item')(
-        (Dom.div()
-          ..title = d[0]
-          ..onClick = onItemClick(d))(d[1]),
-        (Dom.span()
-          ..className = 'close icon-close'
-          ..title = 'Remove'
-          ..onClick = onItemRemove(d))(),
-      )));
+  ReactElement renderListItem(d) {
+    final version = detectDocVersion(d[0]);
+
+    return (Dom.div()
+      ..key = d[0]
+      ..className = 'edp-box edp-list-item history-list-item')(
+      (Dom.div()
+        ..title = d[0]
+        ..onClick = onItemClick(d))(
+        [
+          (Dom.span()..className = 'meta')(
+            d[0].startsWith('/zh') ? 'zh' : 'en',
+          ),
+          if (version != null)
+            (Dom.span()..className = 'meta')(
+              version,
+            ),
+          Dom.span()(d[1]),
+        ],
+      ),
+      (Dom.span()
+        ..className = 'close icon-close'
+        ..title = 'Remove'
+        ..onClick = onItemRemove(d))(),
+    );
+  }
+
+  return Fragment()(
+    list.value.map(renderListItem),
+  );
 }, $HistoryListConfig);

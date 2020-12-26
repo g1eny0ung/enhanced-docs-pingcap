@@ -24,13 +24,16 @@ $box-width: 40px
     position: absolute
     top: -453px
     left: 0
-    min-width: 300px
+    min-width: 350px
     height: 450px
     background: #fff
     border: 1px solid $border-color
     border-radius: 3px
     overflow-y: scroll
     cursor: auto
+
+    &::-webkit-scrollbar
+      display: none
 
   .bookmark-list-tooltip
     +VHCenter()
@@ -71,8 +74,20 @@ $box-width: 40px
     background: $border-color
 
   div:first-child
+    display: flex
+    align-items: center
     flex: 1
     padding: .5rem
+
+  .meta
+    +VHCenter()
+
+    height: 1rem
+    margin-right: 3px
+    padding: 3px
+    background: $primary
+    color: #fff
+    border-radius: 3px
 
   .close
     +VHCenter()
