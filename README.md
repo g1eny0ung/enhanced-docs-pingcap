@@ -16,11 +16,16 @@ Currently, this plugin has the following features:
 
 - **History support**
 
-  Record document browsing history, currently record 5 items at most.
+  Record document browsing history, 5 records by default.
 
 - **Lang switch**
 
-  Shortcut to switch between Chinese and English documents.
+  Shortcut for switch between Chinese and English documents.
+
+  Default:
+
+  - Chrome: `Alt+S`
+  - Firefox: `Alt+W`
 
 ## How to development
 
