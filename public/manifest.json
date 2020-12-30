@@ -1,6 +1,6 @@
 {
   "name": "Enhanced PingCAP Docs",
-  "version": "2.2.0",
+  "version": "2.2.1",
   "description": "Put wings on PingCAP Docs. https://docs.pingcap.com/",
   "manifest_version": 2,
   "permissions": [
