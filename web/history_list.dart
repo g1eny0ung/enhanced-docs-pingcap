@@ -22,7 +22,7 @@ UiFactory<HistoryListProps> HistoryList = uiFunction((props) {
     chrome.storageSyncGet(
       {
         'history': [],
-        'historyNum': 5,
+        'historyNum': '5',
       },
       [
         'history',
