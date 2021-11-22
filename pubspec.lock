@@ -357,7 +357,7 @@ packages:
       name: over_react
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.12.1"
+    version: "4.2.2"
   package_config:
     dependency: transitive
     description:
@@ -434,7 +434,7 @@ packages:
       name: react
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "5.7.0"
+    version: "6.1.2"
   redux:
     dependency: transitive
     description:
@@ -588,7 +588,7 @@ packages:
       name: transformer_utils
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.2.5"
+    version: "0.2.8"
   tuple:
     dependency: transitive
     description:
@@ -623,7 +623,7 @@ packages:
       name: w_flux
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.10.10"
+    version: "2.10.13"
   watcher:
     dependency: transitive
     description:
