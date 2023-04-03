@@ -1,3 +1,5 @@
+> **Since I no longer work for PingCAP and the current documentation site has been updated a lot, I decided to remove the plugin and archive this repository.**
+
 # Enhanced PingCAP Docs
 
 > Browser extension that puts wings on PingCAP Docs.
